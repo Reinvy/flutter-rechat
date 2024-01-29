@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rechat/features/explore/data/model/percakapan.dart';
 
 class ExploreScreen extends StatelessWidget {
   const ExploreScreen({super.key});
@@ -72,14 +73,29 @@ class ExploreScreen extends StatelessWidget {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: 20,
-                itemBuilder: (context, index) {
-                  return const Card(
+                itemCount: exploreModelList.length,
+                itemBuilder: (context, i) {
+                  return Card(
                     child: Padding(
-                      padding: EdgeInsets.all(12),
+                      padding: const EdgeInsets.all(12),
                       child: Row(
                         children: [
-                          Text("Explain Me How AI ReChat Works"),
+                          Container(
+                            height: 60,
+                            width: 60,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              image: DecorationImage(
+                                image: AssetImage(exploreModelList[i].icon),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 12,
+                          ),
+                          Expanded(
+                            child: Text(exploreModelList[i].text),
+                          ),
                         ],
                       ),
                     ),

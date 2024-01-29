@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rechat/features/chat/data/model/percakapan.dart';
 
 class AIReChatScreen extends StatelessWidget {
   const AIReChatScreen({super.key});
@@ -98,14 +99,34 @@ class AIReChatScreen extends StatelessWidget {
                   ),
                 ),
                 child: ListView.builder(
-                  itemCount: 20,
-                  itemBuilder: (context, index) {
-                    return const Card(
+                  itemCount: percakapanList.length,
+                  reverse: true,
+                  itemBuilder: (context, i) {
+                    final data = percakapanList.reversed.toList();
+                    return Card(
+                      color: data[i].sender == "user"
+                          ? CupertinoColors.systemBlue
+                          : null,
                       child: Padding(
-                        padding: EdgeInsets.all(12),
+                        padding: const EdgeInsets.all(12),
                         child: Row(
                           children: [
-                            Text("Explain Me How AI ReChat Works"),
+                            CircleAvatar(
+                              backgroundImage: AssetImage(
+                                data[i].sender == "user"
+                                    ? "assets/user.png"
+                                    : "assets/bot.png",
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Text(
+                                data[i].text,
+                                style: const TextStyle(
+                                  color: CupertinoColors.white,
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -113,7 +134,37 @@ class AIReChatScreen extends StatelessWidget {
                   },
                 ),
               ),
-            )
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        contentPadding:
+                            const EdgeInsets.symmetric(horizontal: 12),
+                        hintText: "Ask me anything here...",
+                        suffixIcon: const Icon(
+                          CupertinoIcons.paperplane_fill,
+                          color: CupertinoColors.activeBlue,
+                        ),
+                        filled: true,
+                        fillColor: CupertinoColors.darkBackgroundGray,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  const Icon(
+                    CupertinoIcons.mic_fill,
+                    size: 32,
+                  )
+                ],
+              ),
+            ),
           ],
         ),
       ),

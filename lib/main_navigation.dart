@@ -17,7 +17,7 @@ class MainNavigation extends StatelessWidget {
     ];
   }
 
-  List<PersistentBottomNavBarItem> _navBarsItems() {
+  List<PersistentBottomNavBarItem> _navBarsItems(BuildContext context) {
     return [
       PersistentBottomNavBarItem(
         icon: const Icon(CupertinoIcons.layers),
@@ -26,8 +26,8 @@ class MainNavigation extends StatelessWidget {
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        onPressed: (context) {
-          Navigator.of(context!, rootNavigator: true).push(
+        onPressed: (p0) {
+          Navigator.of(context, rootNavigator: true).push(
             MaterialPageRoute(
               builder: (context) => const AIReChatScreen(),
             ),
@@ -96,7 +96,7 @@ class MainNavigation extends StatelessWidget {
       child: PersistentTabView(
         context,
         screens: _buildScreens(),
-        items: _navBarsItems(),
+        items: _navBarsItems(context),
         resizeToAvoidBottomInset: true,
         backgroundColor: CupertinoColors.darkBackgroundGray,
         decoration: NavBarDecoration(
