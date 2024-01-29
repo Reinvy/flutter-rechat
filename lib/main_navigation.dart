@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:rechat/features/chat/presentation/screens/ai_rechat_screen.dart';
-import 'package:rechat/features/chat/presentation/screens/history_chat_screen.dart';
+import 'package:rechat/features/history/presentation/screen/history_chat_screen.dart';
 import 'package:rechat/features/explore/presentation/screens/explore_screen.dart';
 
 class MainNavigation extends StatelessWidget {
